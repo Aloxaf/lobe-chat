@@ -180,11 +180,38 @@ export const buildAnthropicMessages = async (
     }
   }
 
+  const lastMessage = messages.at(-1);
+  if (lastMessage) {
+    if (typeof lastMessage.content === 'string') {
+      lastMessage.content = [
+        { cache_control: { type: 'ephemeral' }, text: lastMessage.content, type: 'text' },
+      ];
+    } else if (Array.isArray(lastMessage.content)) {
+      const lastContent = lastMessage.content.at(-1);
+      if (lastContent) {
+        switch (lastContent.type) {
+          case 'text':
+          case 'image':
+          case 'tool_result':
+          case 'tool_use':
+          case 'document': {
+            lastContent.cache_control = { type: 'ephemeral' };
+            break;
+          }
+          default: {
+            break;
+          }
+        }
+      }
+    }
+  }
+
   return messages;
 };
 export const buildAnthropicTools = (tools?: OpenAI.ChatCompletionTool[]) =>
   tools?.map(
-    (tool): Anthropic.Tool => ({
+    (tool, i): Anthropic.Tool => ({
+      cache_control: i === tools.length - 1 ? { type: 'ephemeral' } : undefined,
       description: tool.function.description,
       input_schema: tool.function.parameters as Anthropic.Tool.InputSchema,
       name: tool.function.name,

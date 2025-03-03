@@ -4,7 +4,7 @@ import { crawUrlRules } from './urlRules';
 import { applyUrlRules } from './utils/appUrlRules';
 
 export class Crawler {
-  impls = ['naive', 'jina', 'browserless'] as const;
+  impls = ['jina', 'naive', 'browserless'] as const;
 
   /**
    * 爬取网页内容

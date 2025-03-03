@@ -111,7 +111,13 @@ export class LobeAnthropicAI implements LobeRuntimeAI {
         max_tokens: maxTokens,
         messages: await buildAnthropicMessages(user_messages),
         model,
-        system: system_message?.content as string,
+        system: [
+          {
+            cache_control: { type: 'ephemeral' },
+            text: system_message?.content as string,
+            type: 'text',
+          },
+        ],
 
         thinking,
         tools: buildAnthropicTools(tools),
@@ -122,7 +128,13 @@ export class LobeAnthropicAI implements LobeRuntimeAI {
       max_tokens: max_tokens ?? 4096,
       messages: await buildAnthropicMessages(user_messages),
       model,
-      system: system_message?.content as string,
+      system: [
+        {
+          cache_control: { type: 'ephemeral' },
+          text: system_message?.content as string,
+          type: 'text',
+        },
+      ],
       temperature: payload.temperature !== undefined ? temperature / 2 : undefined,
       tools: buildAnthropicTools(tools),
       top_p,
