@@ -8,6 +8,10 @@ export const jina: CrawlImpl<{ apiKey?: string }> = async (url, params) => {
       headers: {
         'Accept': 'application/json',
         'Authorization': token ? `Bearer ${token}` : '',
+        'X-Base': 'final',
+        'X-Locale': 'zh-CN',
+        'X-Retain-Images': 'none',
+        'X-Token-Budget': '200000',
         'x-send-from': 'LobeChat Community',
       },
     });
