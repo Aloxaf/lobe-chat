@@ -11,6 +11,7 @@ export const jina: CrawlImpl<{ apiKey?: string }> = async (url, params) => {
         'X-Base': 'final',
         'X-Locale': 'zh-CN',
         'X-Retain-Images': 'none',
+        'X-Timeout': '30',
         'X-Token-Budget': '200000',
         'x-send-from': 'LobeChat Community',
       },
