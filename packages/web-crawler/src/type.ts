@@ -22,7 +22,7 @@ export interface FilterOptions {
   pureText?: boolean;
 }
 
-type CrawlImplType = 'naive' | 'jina' | 'browserless' | 'firecrawl';
+type CrawlImplType = 'naive' | 'jina' | 'browserless' | 'search1api' | 'firecrawl';
 
 type CrawlImplParams<T> = T & {
   filterOptions: FilterOptions;
