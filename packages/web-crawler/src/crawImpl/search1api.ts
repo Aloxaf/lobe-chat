@@ -15,7 +15,7 @@ interface Search1ApiResponse {
 
 export const search1api: CrawlImpl = async (url) => {
   // Get API key from environment variable
-  const apiKey = process.env.SEARCH1API_API_KEY;
+  const apiKey = process.env.SEARCH1API_CRAWL_API_KEY || process.env.SEARCH1API_API_KEY;
 
   if (!apiKey) {
     throw new Error(
@@ -73,7 +73,7 @@ export const search1api: CrawlImpl = async (url) => {
       contentType: 'text',
       description: data.results.title,
       // Using title as description since API doesn't provide a separate description
-length: data.results.content.length, 
+      length: data.results.content.length,
       siteName: new URL(url).hostname,
       title: data.results.title,
       url: data.results.link || url,
