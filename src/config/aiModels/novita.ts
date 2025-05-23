@@ -1,4 +1,5 @@
 import { AIChatModelCard } from '@/types/aiModel';
+
 // https://novita.ai/pricing
 const novitaChatModels: AIChatModelCard[] = [
   {
@@ -7,7 +8,7 @@ const novitaChatModels: AIChatModelCard[] = [
     id: 'qwen/qwen3-0.6b-fp8',
     pricing: {
       input: 0,
-      output: 0
+      output: 0,
     },
     type: 'chat',
   },
@@ -17,7 +18,7 @@ const novitaChatModels: AIChatModelCard[] = [
     id: 'qwen/qwen3-1.7b-fp8',
     pricing: {
       input: 0,
-      output: 0
+      output: 0,
     },
     type: 'chat',
   },
@@ -27,7 +28,7 @@ const novitaChatModels: AIChatModelCard[] = [
     id: 'qwen/qwen3-4b-fp8',
     pricing: {
       input: 0,
-      output: 0
+      output: 0,
     },
     type: 'chat',
   },
@@ -37,7 +38,7 @@ const novitaChatModels: AIChatModelCard[] = [
     id: 'deepseek/deepseek-prover-v2-671b',
     pricing: {
       input: 0.7,
-      output: 2.5
+      output: 2.5,
     },
     type: 'chat',
   },
@@ -47,7 +48,7 @@ const novitaChatModels: AIChatModelCard[] = [
     id: 'qwen/qwen3-235b-a22b-fp8',
     pricing: {
       input: 0.2,
-      output: 0.8
+      output: 0.8,
     },
     type: 'chat',
   },
@@ -57,7 +58,7 @@ const novitaChatModels: AIChatModelCard[] = [
     id: 'qwen/qwen3-30b-a3b-fp8',
     pricing: {
       input: 0.1,
-      output: 0.45
+      output: 0.45,
     },
     type: 'chat',
   },
@@ -67,7 +68,7 @@ const novitaChatModels: AIChatModelCard[] = [
     id: 'qwen/qwen3-32b-fp8',
     pricing: {
       input: 0.1,
-      output: 0.45
+      output: 0.45,
     },
     type: 'chat',
   },
@@ -77,7 +78,7 @@ const novitaChatModels: AIChatModelCard[] = [
     id: 'meta-llama/llama-3.3-70b-instruct',
     pricing: {
       input: 0.13,
-      output: 0.39
+      output: 0.39,
     },
     type: 'chat',
   },
@@ -87,7 +88,7 @@ const novitaChatModels: AIChatModelCard[] = [
     id: 'qwen/qwen3-8b-fp8',
     pricing: {
       input: 0.035,
-      output: 0.138
+      output: 0.138,
     },
     type: 'chat',
   },
@@ -97,7 +98,7 @@ const novitaChatModels: AIChatModelCard[] = [
     id: 'qwen/qwen3-14b-fp8',
     pricing: {
       input: 0.07,
-      output: 0.275
+      output: 0.275,
     },
     type: 'chat',
   },
@@ -257,6 +258,16 @@ const novitaChatModels: AIChatModelCard[] = [
     type: 'chat',
   },
   {
+    contextWindowTokens: 160_000,
+    displayName: 'Deepseek Prover V2 671B',
+    id: 'deepseek/deepseek-prover-v2-671b',
+    pricing: {
+      input: 0.7,
+      output: 2.5,
+    },
+    type: 'chat',
+  },
+  {
     contextWindowTokens: 64_000,
     displayName: 'Deepseek V3 Turbo',
     id: 'deepseek/deepseek-v3-turbo',
@@ -299,7 +310,7 @@ const novitaChatModels: AIChatModelCard[] = [
     enabled: true,
     id: 'deepseek/deepseek-v3-0324',
     pricing: {
-      input: 0.37,
+      input: 0.33,
       output: 1.3,
     },
     type: 'chat',
