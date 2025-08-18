@@ -1,4 +1,5 @@
 import { Highlighter } from '@lobehub/ui';
+import { useDebounce } from 'ahooks';
 import { createStyles } from 'antd-style';
 import { parse } from 'partial-json';
 import { ReactNode, memo, useMemo } from 'react';
@@ -70,17 +71,19 @@ export interface ArgumentsProps {
 const Arguments = memo<ArgumentsProps>(({ arguments: args = '', shine, actions }) => {
   const { styles } = useStyles();
 
+  const debouncedArgs = useDebounce(args, { wait: 100 });
+
   const displayArgs = useMemo(() => {
     try {
-      const obj = parse(args);
+      const obj = parse(debouncedArgs);
       if (Object.keys(obj).length === 0) return {};
       return obj;
     } catch {
-      return args;
+      return debouncedArgs;
     }
-  }, [args]);
+  }, [debouncedArgs]);
 
-  const yaml = useYamlArguments(args);
+  const yaml = useYamlArguments(debouncedArgs);
 
   const showActions = !!actions;
 
@@ -115,7 +118,7 @@ const Arguments = memo<ArgumentsProps>(({ arguments: args = '', shine, actions }
           {actions}
         </Flexbox>
       )}
-      {args.length > 100 ? (
+      {debouncedArgs.length > 100 ? (
         <Highlighter
           language={'json'}
           showLanguage={false}
