@@ -1,7 +1,9 @@
 import analyzer from '@next/bundle-analyzer';
 import { withSentryConfig } from '@sentry/nextjs';
 import withSerwistInit from '@serwist/next';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 import type { NextConfig } from 'next';
+import path from 'node:path';
 import ReactComponentName from 'react-scan/react-component-name/webpack';
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -282,6 +284,15 @@ const nextConfig: NextConfig = {
       ...config.resolve.fallback,
       zipfile: false,
     };
+
+    // support for non-latin characters in pdfjs
+    const pdfjsDistPath = path.dirname(require.resolve('pdfjs-dist/package.json'));
+    const cMapsDir = path.join(pdfjsDistPath, 'cmaps');
+    config.plugins.push(
+      new CopyWebpackPlugin({
+        patterns: [{ from: cMapsDir, to: 'cmaps/' }],
+      }),
+    );
 
     return config;
   },
